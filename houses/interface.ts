@@ -23,12 +23,12 @@ function findHouses(
 function findHouses(houses: House[] | string, filter?: (house: House) => boolean): HouseWithID[] {
     const data: House[] = typeof houses === "string" ? JSON.parse(houses) : houses;
 
-    return data.map((house, index) => {
+    return (filter ? data.filter(filter) : data).map((house) => {
         return {
             ...house,
-            id: index
+            id: data.indexOf(house)
         }
-    }).filter(filter);
+    })
 }
 
 console.log(

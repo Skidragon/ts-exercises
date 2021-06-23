@@ -14,9 +14,9 @@ exports.__esModule = true;
 var houses_1 = require("./houses");
 function findHouses(houses, filter) {
     var data = typeof houses === "string" ? JSON.parse(houses) : houses;
-    return data.map(function (house, index) {
-        return __assign(__assign({}, house), { id: index });
-    }).filter(filter);
+    return (filter ? data.filter(filter) : data).map(function (house) {
+        return __assign(__assign({}, house), { id: data.indexOf(house) });
+    });
 }
 console.log(findHouses(JSON.stringify(houses_1.houses), function (_a) {
     var name = _a.name;

@@ -20,7 +20,7 @@ const forEach = <T>(data: T[], cb: (item: T, index: number) => void) => {
         cb(item, i);
     }
 }
-const map = <T>(data: T[], cb: (item: T, index: number) => unknown) => {
+const map = <T, K>(data: T[], cb: (item: T, index: number) => K): K[] => {
     const newArr = [];
 
     for(let i = 0; i < data.length; i++) {
@@ -46,16 +46,14 @@ forEach(dogs, (dog) => {
     console.log(dog);
 })
 
-interface MappedDog extends Dog {
-    age: number;
-}
+
 const mappedDogs = map(dogs, (dog) => {
     return {
         ...dog,
         age: 13
     }
 })
-console.log(mappedDogs);
+console.log(mappedDogs[0]);
 const filteredDogs = filter(dogs, (dog) => {
     return dog.name === 'Boots';
 })
